@@ -6,11 +6,16 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li routerLinkActive="active">
+      <li routerLinkActive="active"  *ngIf="!isAuth">
         <a routerLink="auth/signup">Register</a>
       </li>
-      <li routerLinkActive="active">
+      <li routerLinkActive="active"  *ngIf="!isAuth">
         <a routerLink="auth/signin">Log in</a>
+      </li>
+      <li>
+        <a (click)="onSignOut()"
+           style="cursor:pointer"
+           *ngIf="isAuth">Log out</a>
       </li>
     </ul>
   </div>
