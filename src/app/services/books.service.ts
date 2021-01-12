@@ -13,6 +13,7 @@ export class BooksService {
   booksSubject = new Subject<Book[]>();
 
   constructor() {
+    this.getBooks();
   }
 
   emitBooks() {
@@ -30,4 +31,22 @@ export class BooksService {
         this.emitBooks();
       });
   }
+
+//Method on() : premier argument  'value'  demande à Firebase d'exécuter le callback à chaque modification de valeur enregistrée =>si modif depuis un appareil, la liste maj sur tous appareils connectés
+
+  getSingleBook(id: number) {
+    return new Promise(
+      (resolve, reject) => {
+        firebase.database().ref('/books' + id).once('value').then(
+          (data: DataSnapshot) => {
+            resolve(data.val());
+          }, (error) => {
+            reject(error);
+          }
+        );
+      }
+    );
+  }
+
+
 }
