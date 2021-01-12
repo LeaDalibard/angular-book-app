@@ -1,9 +1,19 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {Book} from '../models/book.model';
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BooksService {
 
-  constructor() { }
+  books: Book[] = [];
+  booksSubject = new Subject<Book[]>();
+
+  constructor() {
+  }
+
+  emitBooks() {
+    this.booksSubject.next(this.books);
+  }
 }
