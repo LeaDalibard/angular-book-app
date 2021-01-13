@@ -18,10 +18,20 @@
                   class="form-control" formControlName="synopsis">
         </textarea>
       </div>
+
       <button class="btn btn-success" [disabled]="bookForm.invalid"
               type="submit">Save
       </button>
-
     </form>
+
+    <div class="form-group">
+      <h4>Add a picture</h4>
+      <input type="file" (change)="detectFiles($event)"
+             class="form-control" accept="image/*">
+      <p class="text-success" *ngIf="fileUploaded">File loaded !</p>
+    </div>
+    <button class="btn btn-success" [disabled]="bookForm.invalid || fileIsUploading"
+            type="submit">Save
+    </button>
   </div>
 </div>
