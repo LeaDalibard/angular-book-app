@@ -37,9 +37,9 @@ export class BooksService {
   getSingleBook(id: number) {
     return new Promise(
       (resolve, reject) => {
-        firebase.database().ref('/books' + id).once('value').then(
-          (data: DataSnapshot) => {
-            resolve(data.val());
+        firebase.database().ref('/books/' + id).once('value').then(
+          (snapshot) => {
+            resolve(snapshot.val());
           }, (error) => {
             reject(error);
           }

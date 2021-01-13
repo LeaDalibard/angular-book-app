@@ -16,7 +16,7 @@ export class SingleBookComponent implements OnInit {
 
   book: Book;
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.book = new Book('', '');
     const id = this.route.snapshot.params['id'];
     this.booksService.getSingleBook(+id).then(
@@ -25,6 +25,7 @@ export class SingleBookComponent implements OnInit {
       }
     );
   }
+
 
   onBack() {
     this.router.navigate(['/books']);
